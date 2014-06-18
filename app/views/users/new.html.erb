@@ -1,0 +1,19 @@
+<h1> Nuevo usuario </h1>
+
+<%= form_for @user do |f| %>
+    <%= f.label :name, 'Nombre' %>
+    <%= f.text_field :name %>
+
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email %>
+
+    
+    <%= f.label :password, 'Clave' %>
+    <%= f.password_field :password %>
+
+
+    <%= f.label :password_confirmation, 'Repita su clave' %>
+    <%= f.password_field :password_confirmation %>
+
+    <%= f.submit "Registrarme" %>
+<% end %>

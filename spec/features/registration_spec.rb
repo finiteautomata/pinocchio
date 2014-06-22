@@ -14,6 +14,6 @@ describe "Registration" do
 
     click_button 'Registrarme'
 
-    expect(page).to have_content("Hola, #{name}")
+    expect(page).to have_content("Hola #{name}")
   end
 end

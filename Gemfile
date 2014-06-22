@@ -29,6 +29,10 @@ gem 'spring',        group: :development
 group :development, :test do
   gem 'rspec', '~> 3.0.0.beta2'
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'pry', '~> 0.10'
+  gem 'pry-rails'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
 end
 
 group :development do

@@ -1,2 +1,8 @@
-- if @user 
-  %h1 Hola #{@user.name}
+.header
+  - if @user
+    %span Hola #{@user.name}
+  - else
+    %span
+      = link_to "Registrate", new_user_path
+      o
+      = link_to "Ingresá", ""

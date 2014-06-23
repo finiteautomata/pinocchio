@@ -4,16 +4,44 @@ describe "Registration" do
   let(:email) { "juanperez@example.com" }
   let(:password) { "password" }
 
-  it "should be able to sign up succesfully" do
-    visit new_user_path
 
-    fill_in 'Nombre', with: name
-    fill_in 'Email', with: email
-    fill_in 'Clave', with: password
-    fill_in 'Repita su clave', with: password
+  context "with correct data" do
 
-    click_button 'Registrarme'
+    it "should be able to sign up succesfully" do
+      visit new_user_path
 
-    expect(page).to have_content("Hola #{name}")
+      fill_in 'Name', with: name
+      fill_in 'Email', with: email
+      fill_in 'Password', with: password
+      fill_in 'Repeat your password', with: password
+
+      click_button 'Sign up'
+
+      expect(page).to have_content("Your account has been succesfully created")
+      expect(page).to have_content("Hi #{name}")
+    end
+
+  end
+
+  context "with incorrect data" do
+    let(:name) {"Juan Pérez"}
+
+    it "should not be able to sign up without a mail" do
+      visit new_user_path
+
+      fill_in 'Name', with:name
+      click_button 'Sign up'
+
+      expect(page).to have_content "There have been errors"
+    end
+
+    it "should not be able to sign up without a name" do
+      visit new_user_path
+
+      fill_in 'Email', with:email
+      click_button 'Sign up'
+
+      expect(page).to have_content "errors"
+    end
   end
 end

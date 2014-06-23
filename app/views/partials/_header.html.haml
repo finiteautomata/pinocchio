@@ -1,8 +1,11 @@
 .header
-  - if @user
-    %span Hola #{@user.name}
+  - if flash[:notice]
+    .notice= flash[:notice]
+
+  - if @current_user
+    %span Hi #{@current_user.name}
   - else
     %span
-      = link_to "Registrate", new_user_path
-      o
-      = link_to "Ingresá", ""
+      = link_to "Sign up", new_user_path
+      or
+      = link_to "login", ""

@@ -39,6 +39,7 @@ group :development do
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'zeus', require: false
+  gem 'annotate'
 end
 
 group :test do

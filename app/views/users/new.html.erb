@@ -2,6 +2,7 @@
 
 <% if @user.errors.any? %>
     <div class="errors">
+        <h2> There have been some errors with your signup </h2>
         <% @user.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>

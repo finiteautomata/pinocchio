@@ -11,4 +11,7 @@
 #
 
 class User < ActiveRecord::Base
+  # TODO: Validate this is an email!
+  validates :email, presence:true
+  validates :name, presence:true
 end

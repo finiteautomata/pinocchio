@@ -32,7 +32,8 @@ describe "Registration" do
       fill_in 'Name', with:name
       click_button 'Sign up'
 
-      expect(page).to have_content "There have been errors"
+      expect(page).to have_content "errors"
+      expect(page).not_to have_content("Hi #{name}")
     end
 
     it "should not be able to sign up without a name" do
@@ -42,6 +43,7 @@ describe "Registration" do
       click_button 'Sign up'
 
       expect(page).to have_content "errors"
+      expect(page).not_to have_content("Hi #{name}")
     end
   end
 end

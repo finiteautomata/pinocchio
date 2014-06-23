@@ -5,13 +5,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create user_params
-    set_current_user(@user)
-
-    redirect_to root_path
+    if @user.valid?
+      flash[:notice] = "Your account has been succesfully created"
+      set_current_user(@user)
+      redirect_to root_path
+    else
+      render "new"
+    end
   end
 
 private
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :email)
   end
 end

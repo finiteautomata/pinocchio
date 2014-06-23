@@ -18,31 +18,46 @@ describe User, :type => :model do
   let(:name) { "Juan" }
   let(:password) { "1234"}
 
-  it "should not be valid without a name" do
-    user = User.new email:email
+  describe "Validations" do
 
-    expect(user).not_to be_valid
-    expect(user.errors[:name]).not_to be_empty
-  end
+    it "should not be valid without a name" do
+      user = User.new email:email
 
-  it "should not be valid without a mail" do
-    user = User.new name:name
+      expect(user).not_to be_valid
+      expect(user.errors[:name]).not_to be_empty
+    end
+
+    it "should not be valid without a mail" do
+      user = User.new name:name
+      
+      expect(user).not_to be_valid
+      expect(user.errors[:email]).not_to be_empty    
+    end
+
+    it "should not be valid without a password" do
+      user = User.new name:name, email:email
+
+      expect(user).not_to be_valid
+      expect(user.errors[:password]).not_to be_empty
+    end
     
-    expect(user).not_to be_valid
-    expect(user.errors[:email]).not_to be_empty    
+    it "should not be valid without a password confirmation" do
+      user = User.new name:name, email:email, password:password
+
+      expect(user).not_to be_valid
+      expect(user.errors[:password_confirmation]).not_to be_empty
+    end
   end
 
-  it "should not be valid without a password" do
-    user = User.new name:name, email:email
+  describe "password" do
 
-    expect(user).not_to be_valid
-    expect(user.errors[:password]).not_to be_empty
-  end
-  
-  it "should not be valid without a password confirmation" do
-    user = User.new name:name, email:email, password:password
+    subject {  User.create! name:name, email:email, password:password, password_confirmation:password }
 
-    expect(user).not_to be_valid
-    expect(user.errors[:password_confirmation]).not_to be_empty
+    it "should not be saved in plaintext" do
+      user = User.find(subject.id)
+      expect(user.password).not_to eq(password)
+    end
+
   end
+
 end

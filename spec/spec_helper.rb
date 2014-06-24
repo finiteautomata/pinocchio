@@ -54,4 +54,13 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/v/3-0/docs
   config.infer_spec_type_from_file_location!
+
+  def login(user, password)
+    visit login_path
+
+    fill_in "Email", with:user.email
+    fill_in "Password", with:password
+
+    click_button "Sign in"
+  end
 end

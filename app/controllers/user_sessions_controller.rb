@@ -9,9 +9,14 @@ class UserSessionsController < ApplicationController
       set_current_user(user)
       redirect_to root_path
     else
-      flash[:error] = "Invalid credentials"
+      flash[:notice] = "Incorrect email or password"
       redirect_to login_path
     end
+  end
+
+  def destroy
+    unset_current_user
+    redirect_to root_path
   end
 
 end

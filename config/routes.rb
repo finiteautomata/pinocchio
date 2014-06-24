@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
 
   get 'login', to:'user_sessions#new', as:'login'
+  post 'logout', to:"user_sessions#destroy", as:'logout'
   resources :users
   resource :user_session
   # The priority is based upon order of creation: first created -> highest priority.

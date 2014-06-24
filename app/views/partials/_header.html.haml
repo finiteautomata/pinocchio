@@ -4,6 +4,7 @@
 
   - if @current_user
     %span Hi #{@current_user.name}
+    = link_to "My account", my_account_path
     = form_tag(controller:"user_sessions", action:"destroy", method:"delete") do
       = submit_tag "Log out"
   - else
